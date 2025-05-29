@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos - Le Baumier | Restaurant Gastronomique à St-Félicien</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        body {
+            background-color: #f8f5f2;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+        
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+        
+        p, a, li, button {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #8b5a2b;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 2px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background-color: #6d4722;
+            transform: translateY(-3px);
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #8b5a2b;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            font-size: 14px;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 3px;
+            color: #777;
+            margin-top: 5px;
+        }
+        
+        nav ul {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 40px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 15px;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            background-color: #8b5a2b;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        nav ul li a:hover {
+            color: #8b5a2b;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 60vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            margin-top: 80px;
+        }
+        
+        .page-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .page-hero h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .page-hero p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* About Section */
+        .about-section {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+        
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-img {
+            flex: 1;
+            min-height: 500px;
+            background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .section-title {
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 42px;
+            color: #8b5a2b;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background-color: #8b5a2b;
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .section-title p {
+            color: #777;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .signature {
+            font-family: 'Parisienne', cursive;
+            font-size: 24px;
+            color: #8b5a2b;
+            margin-top: 30px;
+        }
+        
+        /* Philosophy */
+        .philosophy {
+            padding: 100px 0;
+            background-color: #f8f5f2;
+        }
+        
+        .philosophy-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .philosophy-content {
+            flex: 1;
+        }
+        
+        .philosophy-img {
+            flex: 1;
+            min-height: 400px;
+            background: url('https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            border-radius: 2px;
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+        
+        .section-title.center {
+            text-align: center;
+        }
+        
+        .section-title.center h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .team-card {
+            background-color: #f8f5f2;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .team-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 3px solid #8b5a2b;
+        }
+        
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .team-card p {
+            color: #8b5a2b;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .team-card .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .team-card .social-links a {
+            color: #777;
+            transition: color 0.3s;
+        }
+        
+        .team-card .social-links a:hover {
+            color: #8b5a2b;
+        }
+        
+        /* Local Producers */
+        .producers {
+            padding: 80px 0;
+            background: url('https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover fixed;
+            position: relative;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .producers::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .producers-container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .producers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .producer-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .producer-card:hover {
+            background-color: rgba(139, 90, 43, 0.3);
+            border-color: #8b5a2b;
+        }
+        
+        .producer-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .producer-card p {
+            color: #ddd;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .testimonial-card {
+            background-color: #f8f5f2;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 60px;
+            color: rgba(139, 90, 43, 0.1);
+            font-family: 'Times New Roman', serif;
+            line-height: 1;
+        }
+        
+        .testimonial-card p {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .client-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .client-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .client-name h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .client-name p {
+            font-style: normal;
+            color: #8b5a2b;
+            font-size: 14px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background-color: #8b5a2b;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            color: #fff;
+        }
+        
+        .cta-section h2::after {
+            background-color: #fff;
+        }
+        
+        .cta-section p {
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 1px;
+            background-color: #8b5a2b;
+        }
+        
+        .footer-col p {
+            color: #bbb;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-col ul li a {
+            color: #bbb;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+        
+        .footer-col ul li a:hover {
+            color: #8b5a2b;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info li i {
+            color: #8b5a2b;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            transition: all 0.3s;
+            color: #bbb;
+        }
+        
+        .social-links a:hover {
+            background-color: #8b5a2b;
+            color: #fff;
+        }
+        
+        .opening-hours p {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .opening-hours p span {
+            color: #fff;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .page-hero h1 {
+                font-size: 50px;
+            }
+            
+            .about-container, .philosophy-container {
+                flex-direction: column;
+            }
+            
+            .about-img, .philosophy-img {
+                width: 100%;
+                min-height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: #fff;
+                transition: left 0.3s;
+                padding: 30px;
+                z-index: 999;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .page-hero {
+                min-height: 400px;
+                height: 50vh;
+            }
+            
+            .page-hero h1 {
+                font-size: 40px;
+            }
+            
+            .page-hero p {
+                font-size: 16px;
+            }
+            
+            .section-title h2 {
+                font-size: 36px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-hero h1 {
+                font-size: 32px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="mainHeader">
+        <div class="container header-container">
+            <a href="index.html" class="logo">Le Baumier<span>Saint-Félicien</span></a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="apropos.html" class="active">À Propos</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="evenement.html">Événements</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Notre Histoire</h1>
+            <p>Découvrez l'âme et la passion derrière Le Baumier Saint-Félicien</p>
+            <a href="#about" class="btn">En savoir plus</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-img"></div>
+                <div class="about-content">
+                    <div class="section-title">
+                        <h2>Notre Histoire</h2>
+                        <p>Une passion qui dure depuis 2005</p>
+                    </div>
+                    <p>Fondé en 2005 par Jean-François Tremblay, Le Baumier Saint-Félicien est né d'une passion pour les saveurs authentiques du Saguenay-Lac-Saint-Jean et d'un désir de partager cette richesse gastronomique avec le monde.</p>
+                    <p>Installé dans un bâtiment historique du centre-ville de Saint-Félicien, notre restaurant a su conserver son charme d'antan tout en s'ouvrant à la créativité culinaire contemporaine.</p>
+                    <p>Le nom "Le Baumier" rend hommage à cet arbre résineux emblématique de nos forêts boréales, symbole de résilience et de guérison, valeurs que nous portons dans notre approche de la gastronomie.</p>
+                    <div class="signature">Jean-François Tremblay</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section class="philosophy">
+        <div class="container">
+            <div class="philosophy-container">
+                <div class="philosophy-content">
+                    <div class="section-title">
+                        <h2>Notre Philosophie</h2>
+                        <p>Des valeurs qui nous guident</p>
+                    </div>
+                    <p>Chez Le Baumier, nous croyons en une cuisine honnête, respectueuse des produits et des producteurs. Notre approche se résume en trois engagements fondamentaux :</p>
+                    <ul style="margin: 20px 0 20px 20px;">
+                        <li style="margin-bottom: 15px; color: #555; position: relative; padding-left: 25px;">
+                            <i class="fas fa-leaf" style="color: #8b5a2b; position: absolute; left: 0;"></i>
+                            <strong>Locavore :</strong> 95% de nos ingrédients proviennent d'un rayon de 150 km
+                        </li>
+                        <li style="margin-bottom: 15px; color: #555; position: relative; padding-left: 25px;">
+                            <i class="fas fa-recycle" style="color: #8b5a2b; position: absolute; left: 0;"></i>
+                            <strong>Durabilité :</strong> Zéro gaspillage alimentaire et pratiques écoresponsables
+                        </li>
+                        <li style="margin-bottom: 15px; color: #555; position: relative; padding-left: 25px;">
+                            <i class="fas fa-heart" style="color: #8b5a2b; position: absolute; left: 0;"></i>
+                            <strong>Authenticité :</strong> Des recettes qui racontent notre terroir et notre histoire
+                        </li>
+                    </ul>
+                    <p>Chaque plat qui sort de notre cuisine est une célébration des paysages, des saisons et du savoir-faire artisanal de notre belle région.</p>
+                </div>
+                <div class="philosophy-img"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team">
+        <div class="container">
+            <div class="section-title center">
+                <h2>Notre Équipe</h2>
+                <p>Des passionnés à votre service</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-img">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" alt="Jean-François Tremblay">
+                    </div>
+                    <h3>Jean-François Tremblay</h3>
+                    <p>Chef Propriétaire</p>
+                    <p>Formé à l'Institut de tourisme et d'hôtellerie du Québec, Jean-François a travaillé dans les plus grandes maisons montréalaises avant de revenir à ses racines.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-img">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" alt="Marie-Ève Gagnon">
+                    </div>
+                    <h3>Marie-Ève Gagnon</h3>
+                    <p>Chef Pâtissière</p>
+                    <p>Spécialiste des desserts à base de bleuets et d'érable, Marie-Ève apporte une touche de douceur et de créativité à notre menu.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-img">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" alt="Étienne Dubois">
+                    </div>
+                    <h3>Étienne Dubois</h3>
+                    <p>Maître d'hôtel & Sommelier</p>
+                    <p>Avec 15 ans d'expérience, Étienne saura vous guider dans notre sélection de vins québécois et vous offrir un service attentionné.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Producers -->
+    <section class="producers">
+        <div class="container producers-container">
+            <div class="section-title">
+                <h2>Nos Producteurs Locaux</h2>
+                <p>Le terroir au cœur de notre cuisine</p>
+            </div>
+            
+            <div class="producers-grid">
+                <div class="producer-card">
+                    <h3>Ferme des Bleuets Sauvages</h3>
+                    <p>Producteur familial de bleuets sauvages depuis trois générations, situé à Saint-Prime.</p>
+                </div>
+                
+                <div class="producer-card">
+                    <h3>Fromagerie Boivin</h3>
+                    <p>Fromagerie artisanale produisant des fromages au lait cru selon des méthodes traditionnelles.</p>
+                </div>
+                
+                <div class="producer-card">
+                    <h3>Vignoble du Ruisseau Noir</h3>
+                    <p>Le seul vignoble de la région, pionnier dans la viticulture nordique.</p>
+                </div>
+                
+                <div class="producer-card">
+                    <h3>Érablière Charbonneau</h3>
+                    <p>Producteur d'érable biologique dont les produits reflètent la pureté de nos forêts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title center">
+                <h2>Ils parlent de nous</h2>
+                <p>Ce que la presse dit de Le Baumier</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p>"Le Baumier redéfinit ce que signifie la cuisine régionale. Jean-François Tremblay élève les produits locaux à un niveau gastronomique rarement vu en région."</p>
+                    <div class="client-info">
+                        <div class="client-img">
+                            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Émilie Fortin">
+                        </div>
+                        <div class="client-name">
+                            <h4>Émilie Fortin</h4>
+                            <p>La Presse</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p>"Une adresse incontournable pour qui veut comprendre l'identité culinaire du Saguenay-Lac-Saint-Jean. La carte des vins locaux est une révélation."</p>
+                    <div class="client-info">
+                        <div class="client-img">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Marc-André Gagnon">
+                        </div>
+                        <div class="client-name">
+                            <h4>Marc-André Gagnon</h4>
+                            <p>Le Devoir</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p>"Le Baumier fait partie de ces restaurants qui valent le détour. La tourtière réinventée est un chef-d'œuvre de créativité et d'authenticité."</p>
+                    <div class="client-info">
+                        <div class="client-img">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sarah Leblanc">
+                        </div>
+                        <div class="client-name">
+                            <h4>Sarah Leblanc</h4>
+                            <p>Guide du Routard</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="section-title center">
+                <h2>Prêt à vivre l'expérience Le Baumier?</h2>
+                <p>Réservez votre table dès maintenant</p>
+            </div>
+            <p>Nous nous engageons à vous offrir une expérience gastronomique mémorable au cœur de Saint-Félicien.</p>
+            <a href="reservation.html" class="btn">Réserver une table</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Le Baumier</h3>
+                    <p>Restaurant gastronomique mettant en valeur les produits du terroir du Saguenay-Lac-Saint-Jean dans une ambiance chaleureuse et raffinée.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Heures d'ouverture</h3>
+                    <div class="opening-hours">
+                        <p>Lundi - Jeudi <span>11h - 21h</span></p>
+                        <p>Vendredi - Samedi <span>11h - 22h</span></p>
+                        <p>Dimanche <span>10h - 15h</span></p>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Rue Principale, Saint-Félicien, QC G8K 3H9</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+1 418 679-1234</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@lebaumier.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Le Baumier Saint-Félicien. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Animation du header au scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Animation fluide des ancres
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Fermer le menu mobile si ouvert
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

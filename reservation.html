@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation - Le Baumier St-Félicien</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        body {
+            background-color: #f8f5f2;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+        
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+        
+        p, a, li, button, input, textarea, select {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #8b5a2b;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 2px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #6d4722;
+            transform: translateY(-3px);
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #8b5a2b;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            font-size: 14px;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 3px;
+            color: #777;
+            margin-top: 5px;
+        }
+        
+        nav ul {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 40px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 15px;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            background-color: #8b5a2b;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        nav ul li a:hover {
+            color: #8b5a2b;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        /* Hero Section */
+        .reservation-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            margin-top: 80px;
+        }
+        
+        .reservation-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .reservation-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .reservation-hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Reservation Form */
+        .reservation-section {
+            padding: 80px 0;
+        }
+        
+        .reservation-container {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+        
+        .reservation-form {
+            flex: 1;
+            background-color: #fff;
+            padding: 40px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-title {
+            font-size: 32px;
+            color: #8b5a2b;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #8b5a2b;
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .reservation-info {
+            flex: 1;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .info-card {
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .info-card h3 {
+            font-size: 24px;
+            color: #8b5a2b;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .info-card h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 1px;
+            background-color: #8b5a2b;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .info-card p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info li i {
+            color: #8b5a2b;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+        
+        .opening-hours p {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .opening-hours p span {
+            color: #333;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 1px;
+            background-color: #8b5a2b;
+        }
+        
+        .footer-col p {
+            color: #bbb;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-col ul li a {
+            color: #bbb;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+        
+        .footer-col ul li a:hover {
+            color: #8b5a2b;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            transition: all 0.3s;
+            color: #bbb;
+        }
+        
+        .social-links a:hover {
+            background-color: #8b5a2b;
+            color: #fff;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .reservation-container {
+                flex-direction: column;
+            }
+            
+            .reservation-info {
+                position: static;
+                width: 100%;
+            }
+            
+            .reservation-hero h1 {
+                font-size: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: #fff;
+                transition: left 0.3s;
+                padding: 30px;
+                z-index: 999;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .reservation-hero {
+                height: 350px;
+                margin-top: 70px;
+            }
+            
+            .reservation-hero h1 {
+                font-size: 36px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .reservation-form {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .reservation-hero h1 {
+                font-size: 32px;
+            }
+            
+            .reservation-hero p {
+                font-size: 16px;
+            }
+            
+            .form-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="mainHeader">
+        <div class="container header-container">
+            <a href="index.html" class="logo">Le Baumier<span>Saint-Félicien</span></a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#about">Notre Histoire</a></li>
+                    <li><a href="index.html#menu">Menu</a></li>
+                    <li><a href="reservation.html">Réservation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="reservation-hero">
+        <div class="reservation-hero-content">
+            <h1>Réserver une table</h1>
+            <p>Vivez une expérience gastronomique exceptionnelle au cœur de Saint-Félicien</p>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section class="reservation-section">
+        <div class="container">
+            <div class="reservation-container">
+                <form class="reservation-form" id="reservationForm">
+                    <h2 class="form-title">Formulaire de Réservation</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Nombre de personnes</label>
+                            <select id="guests" class="form-control" required>
+                                <option value="">Sélectionner</option>
+                                <option value="1">1 personne</option>
+                                <option value="2">2 personnes</option>
+                                <option value="3">3 personnes</option>
+                                <option value="4">4 personnes</option>
+                                <option value="5">5 personnes</option>
+                                <option value="6">6 personnes</option>
+                                <option value="7">7 personnes</option>
+                                <option value="8">8 personnes</option>
+                                <option value="9">9+ personnes</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Heure</label>
+                            <select id="time" class="form-control" required>
+                                <option value="">Sélectionner</option>
+                                <option value="11:00">11:00</option>
+                                <option value="11:30">11:30</option>
+                                <option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option>
+                                <option value="13:00">13:00</option>
+                                <option value="13:30">13:30</option>
+                                <option value="17:00">17:00</option>
+                                <option value="17:30">17:30</option>
+                                <option value="18:00">18:00</option>
+                                <option value="18:30">18:30</option>
+                                <option value="19:00">19:00</option>
+                                <option value="19:30">19:30</option>
+                                <option value="20:00">20:00</option>
+                                <option value="20:30">20:30</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="special-requests">Demandes spéciales</label>
+                        <textarea id="special-requests" class="form-control" placeholder="Allergies, anniversaire, etc."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn" style="width: 100%;">Confirmer la réservation</button>
+                    </div>
+                </form>
+                
+                <div class="reservation-info">
+                    <div class="info-card">
+                        <h3>Informations pratiques</h3>
+                        <p>Pour toute réservation de plus de 8 personnes, merci de nous contacter directement par téléphone.</p>
+                        <p>Les réservations sont confirmées par email dans les 24 heures.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>Heures d'ouverture</h3>
+                        <div class="opening-hours">
+                            <p>Lundi - Jeudi <span>11h - 21h</span></p>
+                            <p>Vendredi - Samedi <span>11h - 22h</span></p>
+                            <p>Dimanche <span>10h - 15h</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>Contact</h3>
+                        <ul class="contact-info">
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>123 Rue Principale, Saint-Félicien, QC G8K 3H9</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <span>+1 418 679-1234</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <span>reservations@lebaumier.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Le Baumier</h3>
+                    <p>Restaurant gastronomique mettant en valeur les produits du terroir du Saguenay-Lac-Saint-Jean dans une ambiance chaleureuse et raffinée.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="index.html#about">Notre Histoire</a></li>
+                        <li><a href="index.html#menu">Menu</a></li>
+                        <li><a href="reservation.html">Réservation</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Politiques</h3>
+                    <ul>
+                        <li><a href="#">Conditions générales</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                        <li><a href="#">Politique d'annulation</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Le Baumier Saint-Félicien. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Animation du header au scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Gestion du formulaire de réservation
+        const reservationForm = document.getElementById('reservationForm');
+        
+        reservationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupération des valeurs du formulaire
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                guests: document.getElementById('guests').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                requests: document.getElementById('special-requests').value
+            };
+            
+            // Ici, vous pourriez ajouter une requête AJAX pour envoyer les données au serveur
+            console.log('Données de réservation:', formData);
+            
+            // Message de confirmation (à remplacer par une vraie logique)
+            alert('Votre réservation a été soumise avec succès. Nous vous contacterons pour confirmation.');
+            reservationForm.reset();
+        });
+        
+        // Configuration du sélecteur de date
+        const dateInput = document.getElementById('date');
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        
+        // Format YYYY-MM-DD
+        const minDate = tomorrow.toISOString().split('T')[0];
+        dateInput.min = minDate;
+        
+        // Désactiver les lundis (exemple)
+        dateInput.addEventListener('input', function() {
+            const selectedDate = new Date(this.value);
+            if (selectedDate.getDay() === 1) { // Lundi = 1
+                alert('Nous sommes fermés le lundi. Veuillez choisir une autre date.');
+                this.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

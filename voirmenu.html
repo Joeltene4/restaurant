@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Le Baumier - Restaurant Gastronomique à St-Félicien</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        body {
+            background-color: #f8f5f2;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+        
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+        
+        p, a, li, button {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #8b5a2b;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 2px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background-color: #6d4722;
+            transform: translateY(-3px);
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #8b5a2b;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            font-size: 14px;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 3px;
+            color: #777;
+            margin-top: 5px;
+        }
+        
+        nav ul {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 40px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 15px;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            background-color: #8b5a2b;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        nav ul li a:hover {
+            color: #8b5a2b;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        /* Hero Section */
+        .menu-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            margin-top: 80px;
+        }
+        
+        .menu-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .menu-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .menu-hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Menu Navigation */
+        .menu-nav {
+            background-color: #8b5a2b;
+            padding: 15px 0;
+            position: sticky;
+            top: 80px;
+            z-index: 99;
+        }
+        
+        .menu-nav ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .menu-nav ul li {
+            margin: 0 15px;
+        }
+        
+        .menu-nav ul li a {
+            color: #fff;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .menu-nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: #fff;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .menu-nav ul li a:hover::after,
+        .menu-nav ul li a.active::after {
+            width: 100%;
+        }
+        
+        /* Menu Sections */
+        .menu-section {
+            padding: 80px 0 40px;
+        }
+        
+        .section-title {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #8b5a2b;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background-color: #8b5a2b;
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .section-title p {
+            color: #777;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+        
+        /* Menu Items */
+        .menu-category {
+            margin-bottom: 50px;
+        }
+        
+        .menu-category h3 {
+            font-size: 24px;
+            color: #6d4722;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-item {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .menu-item h4 {
+            font-size: 18px;
+            color: #333;
+        }
+        
+        .menu-price {
+            font-weight: 700;
+            color: #8b5a2b;
+            font-size: 18px;
+        }
+        
+        .menu-item p {
+            color: #666;
+            font-size: 15px;
+        }
+        
+        .menu-item .ingredients {
+            font-style: italic;
+            color: #888;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        .menu-highlight {
+            border: 1px solid #8b5a2b;
+            position: relative;
+        }
+        
+        .menu-highlight::before {
+            content: 'Chef\'s Selection';
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background-color: #8b5a2b;
+            color: #fff;
+            padding: 3px 10px;
+            font-size: 12px;
+            border-radius: 3px;
+        }
+        
+        /* Seasonal Menu */
+        .seasonal-menu {
+            background-color: #fff;
+            padding: 80px 0;
+            margin: 40px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .seasonal-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .seasonal-text {
+            flex: 1;
+        }
+        
+        .seasonal-image {
+            flex: 1;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .seasonal-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Wine Pairing */
+        .wine-pairing {
+            background-color: #f1e8e0;
+            padding: 30px;
+            border-radius: 5px;
+            margin: 30px 0;
+        }
+        
+        .wine-pairing h4 {
+            color: #8b5a2b;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .wine-pairing p {
+            color: #555;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 1px;
+            background-color: #8b5a2b;
+        }
+        
+        .footer-col p {
+            color: #bbb;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-col ul li a {
+            color: #bbb;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+        
+        .footer-col ul li a:hover {
+            color: #8b5a2b;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info li i {
+            color: #8b5a2b;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            transition: all 0.3s;
+            color: #bbb;
+        }
+        
+        .social-links a:hover {
+            background-color: #8b5a2b;
+            color: #fff;
+        }
+        
+        .opening-hours p {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .opening-hours p span {
+            color: #fff;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .seasonal-content {
+                flex-direction: column;
+            }
+            
+            .seasonal-image {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: #fff;
+                transition: left 0.3s;
+                padding: 30px;
+                z-index: 999;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .menu-hero h1 {
+                font-size: 36px;
+            }
+            
+            .menu-hero p {
+                font-size: 16px;
+            }
+            
+            .menu-nav ul li {
+                margin: 0 10px 10px;
+            }
+            
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .menu-hero {
+                height: 50vh;
+                min-height: 300px;
+                margin-top: 70px;
+            }
+            
+            .menu-hero h1 {
+                font-size: 28px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .menu-category h3 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="mainHeader">
+        <div class="container header-container">
+            <a href="index.html" class="logo">Le Baumier<span>Saint-Félicien</span></a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#about">Notre Histoire</a></li>
+                    <li><a href="menu.html" class="active">Menu</a></li>
+                    <li><a href="events.html">Événements</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="menu-hero">
+        <div class="container menu-hero-content">
+            <h1>Notre Menu</h1>
+            <p>Découvrez notre sélection gastronomique mettant en valeur les produits du terroir du Saguenay-Lac-Saint-Jean</p>
+            <a href="reservation.html" class="btn">Réserver une table</a>
+        </div>
+    </section>
+
+    <!-- Menu Navigation -->
+    <div class="menu-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#entrees" class="active">Entrées</a></li>
+                <li><a href="#plats">Plats Principaux</a></li>
+                <li><a href="#fromages">Fromages</a></li>
+                <li><a href="#desserts">Desserts</a></li>
+                <li><a href="#vins">Accords Mets & Vins</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Menu Sections -->
+    <div class="container">
+        <!-- Entrées -->
+        <section class="menu-section" id="entrees">
+            <div class="section-title">
+                <h2>Entrées</h2>
+                <p>Pour commencer votre expérience culinaire</p>
+            </div>
+            
+            <div class="menu-category">
+                <h3>Suggestions du Chef</h3>
+                <div class="menu-items">
+                    <div class="menu-item menu-highlight">
+                        <div class="menu-item-header">
+                            <h4>Tartare de Bœuf Régional</h4>
+                            <div class="menu-price">24€</div>
+                        </div>
+                        <p>Bœuf de Charlevoix, câpres, échalotes, jaune d'œuf de ferme</p>
+                        <p class="ingredients">Servi avec croûtons maison et salade de mesclun</p>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <h4>Foie Gras Maison</h4>
+                            <div class="menu-price">28€</div>
+                        </div>
+                        <p>Foie gras de canard mi-cuit, chutney de bleuets sauvages</p>
+                        <p class="ingredients">Pain brioché toasté, fleur de sel</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <h3>Poissons & Fruits de Mer</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <h4>Saumon Fumé Maison</h4>
+                            <div class="menu-price">22€</div>
+                        </div>
+                        <p>Saumon du Fjord fumé à l'érable, blinis, crème fraîche</p>
+                        <p class="ingredients">Accompagné de baies du Lac-Saint-Jean</p>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <h4>Pétoncles du Québec</h4>
+                            <div class="menu-price">26€</div>
+                        </div>
+                        <p>Pétoncles poêlés, purée de chou-fleur, émulsion au safran</p>
+                        <p class="ingredients">Fines herbes du jardin, zestes de citron</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Plats Principaux -->
+        <section class="menu-section" id="plats">
+            <div class="section-title">
+                <h2>Plats Principaux</h2>
+                <p>Nos créations signature</p>
+            </div>
+            
+            <div class="menu-category">
+                <h3>Viandes</h3>
+                <div class="menu-items">
+                    <div class="menu-item menu-highlight">
+                        <div class="menu-item-header">
+                            <h4>Tourtière Réinventée</h4>
+                            <div class="menu-price">32€</div>
+                        </div>
+                        <p>Version gastronomique du classique avec gibier du Nord</p>
+                        <p class="ingredients">Foie gras, champignons sauvages, sauce aux airelles</p>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <h4>Filet de Bœuf</h4>
+                            <div class="menu-price">38€</div>
+                        </div>
+                        <p>Filet de bœuf Angus, sauce au vin rouge de la région</p>
+                        <p class="ingredients">Gratin dauphinois, légumes de saison</p>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <h4>Magret de Canard</h4>
+                            <div class="menu-price">34€</div>
+                        </div>
+                        <p>Magret de canard du Québec, sauce à l'érable et aux échalotes</p>
+                        <p class="ingredients">Purée de pommes de terre et topinambours, haricots verts</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <h3>Poissons</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <h4>Omble Chevalier</h4>
+                            <div class="menu-price">36€</div>
+                        </div>
+                        <p>Omble chevalier du Lac-Saint-Jean, croustillant de quinoa</p>
+                        <p class="ingredients">Écrasé de pommes de terre nouvelles, sauce au beurre blanc</p>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <h4>Homard du Québec</h4>
+                            <div class="menu-price">42€</div>
+                        </div>
+                        <p>Homard entier rôti au beurre d'ail, risotto crémeux</p>
+                        <p class="ingredients">Asperges grillées, fines herbes</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <h3>Végétarien</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <h4>Risotto aux Champignons</h4>
+                            <div class="menu-price">26€</div>
+                        </div>
+                        <p>Risotto crémeux aux champignons sauvages de la région</p>
+                        <p class="ingredients">Truffe noire, parmesan Reggiano, herbes fraîches</p>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <h4>Gnocchi Maison</h4>
+                            <div class="menu-price">24€</div>
+                        </div>
+                        <p>Gnocchi de pommes de terre, sauce aux noix et épinards</p>
+                        <p class="ingredients">Fromage de chèvre local, noix torréfiées</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Fromages -->
+        <section class="menu-section" id="fromages">
+            <div class="section-title">
+                <h2>Plateau de Fromages</h2>
+                <p>Sélection de fromages artisanaux du Québec</p>
+            </div>
+            
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <h4>Dégustation de Fromages (3 choix)</h4>
+                        <div class="menu-price">18€</div>
+                    </div>
+                    <p>Sélection de trois fromages accompagnés de noix, fruits et confitures</p>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <h4>Grand Plateau (5 choix)</h4>
+                        <div class="menu-price">28€</div>
+                    </div>
+                    <p>Sélection de cinq fromages avec accompagnements variés</p>
+                    <p class="ingredients">Pour 2 personnes minimum</p>
+                </div>
+            </div>
+            
+            <div class="wine-pairing">
+                <h4>Accord Mets & Vins</h4>
+                <p>Nous recommandons un verre de notre Cidre de Glace local ou un vin rouge corsé pour accompagner votre plateau de fromages.</p>
+            </div>
+        </section>
+        
+        <!-- Desserts -->
+        <section class="menu-section" id="desserts">
+            <div class="section-title">
+                <h2>Desserts</h2>
+                <p>Pour conclure en douceur</p>
+            </div>
+            
+            <div class="menu-items">
+                <div class="menu-item menu-highlight">
+                    <div class="menu-item-header">
+                        <h4>Tarte aux Bleuets</h4>
+                        <div class="menu-price">16€</div>
+                    </div>
+                    <p>Bleuets sauvages du Lac-Saint-Jean, crème pâtissière à la vanille</p>
+                    <p class="ingredients">Servi avec glace à l'érable et tuile aux amandes</p>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <h4>Dôme Chocolat-Érable</h4>
+                        <div class="menu-price">18€</div>
+                    </div>
+                    <p>Mousse au chocolat noir, cœur coulant à l'érable, croustillant praliné</p>
+                    <p class="ingredients">Sorbet à la vanille de Madagascar</p>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <h4>Soufflé Grand Marnier</h4>
+                        <div class="menu-price">20€</div>
+                    </div>
+                    <p>Soufflé léger parfumé à l'orange, glace à la vanille</p>
+                    <p class="ingredients">Préparation à la commande - 20 minutes d'attente</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Menu Saisonnier -->
+        <section class="seasonal-menu">
+            <div class="seasonal-content">
+                <div class="seasonal-text">
+                    <h3>Menu Saisonnier</h3>
+                    <p>Notre menu évolue au rythme des saisons pour vous offrir des produits à leur apogée gustative. Actuellement, nous mettons à l'honneur les saveurs automnales avec nos spécialités de gibier et de champignons sauvages.</p>
+                    <p>Découvrez nos créations éphémères disponibles uniquement pendant cette période de l'année.</p>
+                    <a href="#" class="btn">Voir le menu saisonnier</a>
+                </div>
+                <div class="seasonal-image">
+                    <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Menu saisonnier">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Accords Mets & Vins -->
+        <section class="menu-section" id="vins">
+            <div class="section-title">
+                <h2>Accords Mets & Vins</h2>
+                <p>Sélection de vins québécois et internationaux</p>
+            </div>
+            
+            <div class="menu-category">
+                <h3>Vins Rouges</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <h4>Pinot Noir - Domaine des Pervenches</h4>
+                            <div class="menu-price">12€ / verre</div>
+                        </div>
+                        <p>Québec - 2019 - Notes de cerise et d'épices douces</p>
+                        <p class="ingredients">Accord parfait avec le gibier et les fromages</p>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <h4>Médoc - Château Bellevue</h4>
+                            <div class="menu-price">15€ / verre</div>
+                        </div>
+                        <p>Bordeaux, France - 2016 - Tanins soyeux, arômes de cassis</p>
+                        <p class="ingredients">Idéal avec les viandes rouges et les plats en sauce</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <h3>Vins Blancs</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <h4>Riesling - Domaine du Nival</h4>
+                            <div class="menu-price">10€ / verre</div>
+                        </div>
+                        <p>Québec - 2020 - Fraîcheur minérale, notes d'agrumes</p>
+                        <p class="ingredients">Accompagne à merveille les poissons et fruits de mer</p>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <h4>Chardonnay - Le Clos Jordanne</h4>
+                            <div class="menu-price">14€ / verre</div>
+                        </div>
+                        <p>Ontario, Canada - 2018 - Beurré avec une touche de vanille</p>
+                        <p class="ingredients">Parfait avec les plats crémeux et les volailles</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wine-pairing">
+                <h4>Conseils de Notre Sommelier</h4>
+                <p>Notre équipe est à votre disposition pour vous guider dans le choix des vins qui sublimeront votre expérience culinaire. N'hésitez pas à demander notre menu dégustation avec accords mets et vins.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Le Baumier</h3>
+                    <p>Restaurant gastronomique mettant en valeur les produits du terroir du Saguenay-Lac-Saint-Jean dans une ambiance chaleureuse et raffinée.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Heures d'ouverture</h3>
+                    <div class="opening-hours">
+                        <p>Lundi - Jeudi <span>11h - 21h</span></p>
+                        <p>Vendredi - Samedi <span>11h - 22h</span></p>
+                        <p>Dimanche <span>10h - 15h</span></p>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Rue Principale, Saint-Félicien, QC G8K 3H9</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+1 418 679-1234</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@lebaumier.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Le Baumier Saint-Félicien. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Animation du header au scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Animation fluide des ancres
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 140, // Ajusté pour la navigation du menu
+                        behavior: 'smooth'
+                    });
+                    
+                    // Mettre à jour la navigation du menu
+                    document.querySelectorAll('.menu-nav a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Fermer le menu mobile si ouvert
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+        
+        // Highlight la section visible dans la navigation du menu
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.menu-section');
+            const navLinks = document.querySelectorAll('.menu-nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
